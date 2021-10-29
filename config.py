@@ -34,7 +34,7 @@ repos = {
     "yocto-autobuilder-helper": ["https://github.com/gholang/yocto-autobuilder-helper", "master"],
     "eclipse-poky-neon": ["git://git.yoctoproject.org/eclipse-yocto", "neon-master"],
     "eclipse-poky-oxygen": ["git://git.yoctoproject.org/eclipse-yocto", "oxygen-master"],
-    "poky": ["git://git.yoctoproject.org/poky", "master"],
+    "poky": ["https://github.com/gholang/poky", "master"],
     "meta-intel": ["git://git.yoctoproject.org/meta-intel", "master"],
     "meta-arm": ["git://git.yoctoproject.org/meta-arm", "master"],
     "meta-agl": ["https://git.automotivelinux.org/AGL/meta-agl", "next"],
