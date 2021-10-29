@@ -31,13 +31,9 @@ buildertorepos = {
 # Repositories used that the scripts need to know about and should be buildbot
 # user customisable
 repos = {
-    "yocto-autobuilder-helper":
-        ["git://git.yoctoproject.org/yocto-autobuilder-helper",
-         "master"],
-    "eclipse-poky-neon": ["git://git.yoctoproject.org/eclipse-yocto",
-                          "neon-master"],
-    "eclipse-poky-oxygen": ["git://git.yoctoproject.org/eclipse-yocto",
-                            "oxygen-master"],
+    "yocto-autobuilder-helper": ["https://github.com/gholang/yocto-autobuilder-helper", "master"],
+    "eclipse-poky-neon": ["git://git.yoctoproject.org/eclipse-yocto", "neon-master"],
+    "eclipse-poky-oxygen": ["git://git.yoctoproject.org/eclipse-yocto", "oxygen-master"],
     "poky": ["git://git.yoctoproject.org/poky", "master"],
     "meta-intel": ["git://git.yoctoproject.org/meta-intel", "master"],
     "meta-arm": ["git://git.yoctoproject.org/meta-arm", "master"],
@@ -45,8 +41,7 @@ repos = {
     "meta-aws": ["https://github.com/aws/meta-aws.git", "master"],
     "meta-ti": ["git://git.yoctoproject.org/meta-ti", "master"],
     "meta-security": ["git://git.yoctoproject.org/meta-security", "master"],
-    "oecore": ["git://git.openembedded.org/openembedded-core",
-                          "master"],
+    "oecore": ["git://git.openembedded.org/openembedded-core", "master"],
     "bitbake": ["git://git.openembedded.org/bitbake", "master"],
     "meta-qt4": ["git://git.yoctoproject.org/meta-qt4", "master"],
     "meta-qt3": ["git://git.yoctoproject.org/meta-qt3", "master"],
@@ -141,7 +136,7 @@ workers_wine = ["ubuntu1804-ty-1", "ubuntu1804-ty-2", "ubuntu1804-ty-3"]
 workers_buildperf = ["perf-ubuntu1604", "perf-centos7"]
 workers_arm = ["ubuntu1804-arm-1"]
 # workers which don't need buildtools for AUH
-workers_auh = ["ubuntu1904-ty-1", "ubuntu1804-ty-1", "ubuntu1804-ty-2", "ubuntu1804-ty-3", "centos8-ty-1", "centos8-ty-2", "debian10-ty-1", "debian10-ty-2", "debian10-ty-3"]
+workers_auh = ["ubuntu2004-ty-1", "ubuntu1804-ty-1", "ubuntu1804-ty-2", "ubuntu1804-ty-3", "centos8-ty-1", "centos8-ty-2", "debian10-ty-1", "debian10-ty-2", "debian10-ty-3"]
 
 all_workers = workers + workers_bringup + workers_buildperf + workers_arm
 
