@@ -76,8 +76,8 @@ trigger_builders_wait_quick = trigger_builders_wait_shared + [
 
 trigger_builders_wait_full = trigger_builders_wait_shared + [
     "qemumips-alt", "edgerouter-alt", "qemuppc-alt", "qemux86-world-alt",
-    "oe-selftest-ubuntu", "oe-selftest-debian", "oe-selftest-fedora", "oe-selftest-centos",
-    "reproducible-ubuntu", "reproducible-debian", "reproducible-fedora", "reproducible-centos",
+    "oe-selftest-ubuntu", 
+    "reproducible-ubuntu", 
     "qemux86-64-ptest", "qemux86-64-ltp", "qemuarm64-ptest", "qemuarm64-ltp", 
     "meta-intel", "meta-arm", "meta-aws", "meta-agl-core"
 ]
@@ -92,10 +92,10 @@ trigger_builders_wait_full_releases = {
     "zeus" : trigger_builders_wait_full + ["mpc8315e-rdb-alt"],
     "thud" : trigger_builders_wait_full + ["mpc8315e-rdb-alt"],
     "sumo" : trigger_builders_wait_shared + ["qemumips-alt", "edgerouter-alt", "mpc8315e-rdb-alt", "qemuppc-alt", "qemux86-world-alt",
-                                             "oe-selftest-ubuntu", "oe-selftest-debian", "oe-selftest-centos"]
+                                             "oe-selftest-ubuntu"]
 }
 
-trigger_builders_wait_perf = ["buildperf-ubuntu2004", "buildperf-centos7"]
+trigger_builders_wait_perf = ["buildperf-ubuntu2004",]
 
 # Builders which are individually triggered
 builders_others = [
@@ -107,7 +107,7 @@ builders_others = [
 ]
 
 subbuilders = list(set(trigger_builders_wait_quick + trigger_builders_wait_full + trigger_builders_wait_perf + builders_others))
-builders = ["a-quick", "a-full", "docs"] + subbuilders
+builders = ["a-quick", "a-full", "docs"] 
 
 # ## Cluster configuration
 # Publishing settings
@@ -119,32 +119,26 @@ web_port = 8010
 
 # List of workers in the cluster
 workers_ubuntu = ["ubuntu2004-ty-1", "ubuntu2004-ty-2", "ubuntu1804-ty-1", "ubuntu1804-ty-2", "ubuntu1804-ty-3", "ubuntu1604-ty-1"]
-workers_centos = ["centos7-ty-1", "centos7-ty-2", "centos7-ty-3", "centos7-ty-4", "centos8-ty-1", "centos8-ty-2"]
-workers_fedora = ["fedora29-ty-1", "fedora30-ty-1", "fedora30-ty-2"]
-workers_debian = ["debian8-ty-1", "debian9-ty-2", "debian10-ty-1", "debian10-ty-2", "debian10-ty-3"]
-workers_opensuse = ["tumbleweed-ty-1", "tumbleweed-ty-2", "tumbleweed-ty-3", "opensuse151-ty-1", "opensuse150-ty-1"]
 
-workers = workers_ubuntu + workers_centos + workers_fedora + workers_debian + workers_opensuse 
+workers = workers_ubuntu 
 
 workers_bringup = []
 # workers with wine on them for meta-mingw
 workers_wine = ["ubuntu1804-ty-1", "ubuntu1804-ty-2", "ubuntu1804-ty-3"]
-workers_buildperf = ["perf-ubuntu2004", "perf-centos7"]
+workers_buildperf = ["perf-ubuntu2004",]
 workers_arm = ["ubuntu1804-arm-1"]
-# workers which don't need buildtools for AUH
-workers_auh = ["ubuntu2004-ty-1", "ubuntu1804-ty-1", "ubuntu1804-ty-2", "ubuntu1804-ty-3", "centos8-ty-1", "centos8-ty-2", "debian10-ty-1", "debian10-ty-2", "debian10-ty-3"]
 
-all_workers = workers + workers_bringup + workers_buildperf + workers_arm
+all_workers = workers + workers_buildperf
 
 # Worker filtering for older releases
 workers_prev_releases = {
-    "hardknott" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora31", "fedora32", "fedora33", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu2004", "perf-"),
-    "gatesgarth" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
-    "dunfell" : ("centos7", "centos8", "debian8", "debian9", "debian10", "debian11", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "fedora34", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
-    "zeus" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
-    "warrior" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
-    "thud" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
-    "sumo" : ("centos7", "debian8", "debian9", "fedora28", "ubuntu1604", "ubuntu1804", "perf-")
+    "hardknott" : ("ubuntu1604", "ubuntu1804", "ubuntu2004", "perf-"),
+    "gatesgarth" : ("ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
+    "dunfell" : ("ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
+    "zeus" : ("ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+    "warrior" : ("ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+    "thud" : ("ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+    "sumo" : ("ubuntu1604", "ubuntu1804", "perf-")
 }
 
 # Worker configuration, all workers configured the same...
@@ -155,27 +149,10 @@ notify_on_missing = None
 
 # Some builders should only run on specific workers (host OS dependent)
 builder_to_workers = {
-    "bringup": workers_bringup,
-    "pkgman-rpm-non-rpm": workers_ubuntu + workers_debian,
-    "pkgman-deb-non-deb": workers_fedora + workers_centos + workers_opensuse,
+    "pkgman-rpm-non-rpm": workers_ubuntu,
     "oe-selftest-ubuntu": workers_ubuntu,
-    "oe-selftest-debian": workers_debian,
-    "oe-selftest-fedora": workers_fedora,
-    "oe-selftest-opensuse": workers_opensuse,
-    "oe-selftest-centos": workers_centos,
     "reproducible-ubuntu": workers_ubuntu,
-    "reproducible-debian": workers_debian,
-    "reproducible-fedora": workers_fedora,
-    "reproducible-opensuse": workers_opensuse,
-    "reproducible-centos": workers_centos,
     "meta-mingw": workers_wine,
     "buildperf-ubuntu2004": ["perf-ubuntu2004"],
-    "buildperf-centos7": ["perf-centos7"],
-    "qemuarm-armhost": workers_arm,
-    "qemuarm64-ptest": workers_arm,
-    "qemuarm64-ptest-fast": workers_arm,
-    "qemuarm64-ltp": workers_arm,
-    "qemuarm64-armhost": workers_arm,
-    "auh" : workers_auh,
     "default": workers
 }
