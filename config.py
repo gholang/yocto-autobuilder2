@@ -5,8 +5,6 @@
 # ## Build configuration, tied to config.json in yocto-autobuilder-helpers
 # Repositories used by each builder
 buildertorepos = {
-    "eclipse-plugin-neon": ["eclipse-poky-neon"],
-    "eclipse-plugin-oxygen": ["eclipse-poky-oxygen"],
     "a-quick": ["poky", "meta-intel", "oecore", "bitbake",
                 "meta-mingw", "meta-gplv2"],
     "a-full": ["poky", "meta-intel", "oecore", "bitbake",
@@ -32,8 +30,6 @@ buildertorepos = {
 # user customisable
 repos = {
     "yocto-autobuilder-helper": ["https://github.com/gholang/yocto-autobuilder-helper", "master"],
-    "eclipse-poky-neon": ["git://git.yoctoproject.org/eclipse-yocto", "neon-master"],
-    "eclipse-poky-oxygen": ["git://git.yoctoproject.org/eclipse-yocto", "oxygen-master"],
     "poky": ["https://github.com/gholang/poky", "master"],
     "meta-intel": ["git://git.yoctoproject.org/meta-intel", "master"],
     "meta-arm": ["git://git.yoctoproject.org/meta-arm", "master"],
