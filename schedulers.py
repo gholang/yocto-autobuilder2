@@ -241,7 +241,7 @@ def props_for_builder(builder):
         default=swat_default))
     if builder == 'build-appliance':
         props.append(buildappsrcrev_param())
-    if builder in ['build-appliance', 'buildtools', 'eclipse-plugin-neon', 'eclipse-plugin-oxygen']:
+    if builder in ['build-appliance', 'buildtools']:
         props.append(util.BooleanParameter(
             name="deploy_artefacts",
             label="Do we want to deploy artefacts? ",
