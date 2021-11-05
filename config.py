@@ -93,7 +93,10 @@ builders_others = [
     "auh"
 ]
 
-subbuilders = list(set(trigger_builders_wait_quick + trigger_builders_wait_full + builders_others))
+trigger_builders_wait_quick_releases =  trigger_builders_wait_quick
+trigger_builders_wait_full_releases =  trigger_builders_wait_full
+
+subbuilders = list(set(trigger_builders_wait_quick + trigger_builders_wait_full + trigger_builders_wait_perf + builders_others))
 builders = ["a-quick", "a-full", "docs"] 
 
 # ## Cluster configuration
