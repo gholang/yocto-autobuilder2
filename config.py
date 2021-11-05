@@ -82,19 +82,6 @@ trigger_builders_wait_full = trigger_builders_wait_shared + [
     "meta-intel", "meta-arm", "meta-aws", "meta-agl-core"
 ]
 
-trigger_builders_wait_quick_releases = {
-    "zeus" : trigger_builders_wait_quick + ["mpc8315e-rdb"],
-    "thud" : trigger_builders_wait_quick + ["mpc8315e-rdb"],
-    "sumo" : trigger_builders_wait_quick + ["mpc8315e-rdb"]
-}
-
-trigger_builders_wait_full_releases = {
-    "zeus" : trigger_builders_wait_full + ["mpc8315e-rdb-alt"],
-    "thud" : trigger_builders_wait_full + ["mpc8315e-rdb-alt"],
-    "sumo" : trigger_builders_wait_shared + ["qemumips-alt", "edgerouter-alt", "mpc8315e-rdb-alt", "qemuppc-alt", "qemux86-world-alt",
-                                             "oe-selftest-ubuntu"]
-}
-
 trigger_builders_wait_perf = ["buildperf-ubuntu2004",]
 
 # Builders which are individually triggered
@@ -106,7 +93,7 @@ builders_others = [
     "auh"
 ]
 
-subbuilders = list(set(trigger_builders_wait_quick + trigger_builders_wait_full + trigger_builders_wait_perf + builders_others))
+subbuilders = list(set(trigger_builders_wait_quick + trigger_builders_wait_full + builders_others))
 builders = ["a-quick", "a-full", "docs"] 
 
 # ## Cluster configuration
